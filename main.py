@@ -1,5 +1,7 @@
-# codigo del dino game con pygame.
-if __name__ == "__main__":
-    print("hello there...")
+from dino_runner.components.game import Game
 
-print("israel says, hello world!")
+
+if __name__ == "__main__":
+    game = Game()
+    game.run()
+    print("hello there...")
