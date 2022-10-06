@@ -76,10 +76,8 @@ class Game:
         blue_color = (51, 153, 255)
         self.screen.fill(blue_color)
         self.print_menu_elements(death_count)
-
-        pygame.display.update()
-
         self.handle_key_events_on_menu()
+        pygame.display.update()
 
     def print_menu_elements(self, death_count):
         half_screen_heigth = SCREEN_HEIGHT // 2
@@ -94,6 +92,10 @@ class Game:
                 "Your score is: " + str(self.points), heigth=half_screen_heigth + 50)
             self.screen.blit(score, score_rect)
             self.screen.blit(text, text_rect)
+            # Agregando las muertes en contador
+            death, death_rect = get_centered_message(
+                "Deaths: " + str(death_count), heigth=half_screen_heigth + 100)
+            self.screen.blit(death, death_rect)
 
         self.screen.blit(
             RUNNING[0], (half_screen_width - 20, half_screen_heigth - 140))
@@ -109,4 +111,5 @@ class Game:
                 pygame.quit()
                 exit()
             if event.type == pygame.KEYDOWN:
+                self.restart = True
                 self.run()

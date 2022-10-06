@@ -8,5 +8,6 @@ if __name__ == "__main__":
         if game.restart:
             death_count = death_count + 1
         if not game.playing:
+            game.restart = False
             game.show_menu(death_count)
-            #death_count = death_count + 1
+            # teste 1 death_count = death_count + 1
