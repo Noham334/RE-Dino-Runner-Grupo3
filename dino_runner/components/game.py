@@ -109,4 +109,5 @@ class Game:
                 pygame.quit()
                 exit()
             if event.type == pygame.KEYDOWN:
+                self.restart = True
                 self.run()
