@@ -1,6 +1,6 @@
 import random
 import pygame
-from dino_runner.components.powerups.shield import SHIELD, Shield
+from dino_runner.components.powerups.shield import Shield
 
 
 class PowerUpManager:
@@ -36,7 +36,8 @@ class PowerUpManager:
                 player.type = power_up.type
                 power_up.start_time = pygame.time.get_ticks()
                 time_random = random.randrange(5, 8)
-                player.shield_time_up = power_up.start_time + time_random * 1000
+                player.shield_time_up = power_up.start_time + \
+                    (time_random * 1000)
                 self.power_ups.remove(power_up)
 
     def draw(self, screen):

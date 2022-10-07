@@ -10,6 +10,7 @@ from dino_runner.components.powerups.powerupmanager import PowerUpManager
 class Game:
     def __init__(self):
         pygame.init()
+
         pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -90,18 +91,18 @@ class Game:
         self.running = True
         blue_color = (51, 153, 255)
         self.screen.fill(blue_color)
-        self.print_menu_elements()
+        self.print_menu_elements(self.death_count)
         pygame.display.update()
         self.handle_key_events_on_menu()
 
-    def print_menu_elements(self):
+    def print_menu_elements(self, death_count=0):
         half_screen_heigth = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
 
-        if self.death_count == 0:
+        if death_count == 0:
             text, text_rect = get_centered_message("Press any key to start")
             self.screen.blit(text, text_rect)
-        elif self.death_count > 0:
+        elif death_count > 0:
             text, text_rect = get_centered_message("Press any key to Restart")
             score, score_rect = get_centered_message(
                 "Your score is: " + str(self.points), heigth=half_screen_heigth + 50)
