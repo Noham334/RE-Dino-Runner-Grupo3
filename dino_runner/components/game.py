@@ -1,4 +1,5 @@
 import pygame
+from dino_runner.components.Cloud.cloud import Cloud
 from dino_runner.components.dinosaur.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.utils.constants import BG, ICON, RUNNING, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
@@ -23,6 +24,7 @@ class Game:
 
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
+        self.cloud = Cloud()
 
         self.points = 0
         self.running = True
@@ -54,11 +56,13 @@ class Game:
         self.player.update(user_input)
         self.obstacle_manager.update(self)
         self.power_up_manager.update(self.points, self.game_speed, self.player)
+        self.cloud.update(self)
 
     def draw(self):
         self.clock.tick(FPS)
-        self.screen.fill((51, 153, 255))
+        self.screen.fill((255, 255, 255))
         self.draw_background()
+        self.cloud.draw(self.screen)
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         self.score()
